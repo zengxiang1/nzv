@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>登录</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+<link rel="stylesheet" type="text/css" href="../../css/main.css">
+<link rel="stylesheet" type="text/css" href="../../css/member.css">
+</head>
+
+<body>
+<header id="header"></header>
+<div class="nc-login">
+  <div class="nc-login-mode">
+    <ul class="tabs-nav">
+      <li><span id="indSeaNavMenu_1" class="indexNav_1">普通登录<i></i></span></li>
+      <li><span id="indSeaNavMenu_2" class="indexNav_2">手机动态码登录<i></i></span></li>
+    </ul>
+  </div>
+  <div id="indSeaNavText_1" class="tabs-content">
+    <div class="login-form">
+      <form action="" method ="">
+        <span>
+        <input type="text" placeholder="用户名" class="input-40" name="username" id="username" />
+        </span> <span>
+        <input type="password" placeholder="密码" class="input-40" name="pwd" id="userpwd" />
+        </span> 
+        <!--<span class="clearfix auto-login"><i class="s-chk1 fleft mr5"></i><span>7天内免登录</span>-->
+        <div class="error-tips mt10"></div>
+        <a href="javascript:void(0);" class="l-btn-login mt10" id="loginbtn"> 普通登录 </a>
+      </form>
+    </div>
+  </div>
+  <div id="indSeaNavText_2" class="tabs-content none">
+    <div class="login-form">
+      <form action="" method ="">
+        <span>
+        <input type="text" name="phone" id="phone" class="input-40" placeholder="手机号" /><a href="javascript:void(0);" id="sms_send" class="sms_send">获取动态码</a></span>
+        <span>
+        <input type="text" name="sms_captcha" id="sms_captcha" class="input-40" placeholder="填写手机收到的动态码" size="15" />
+        </span>
+        <div id="sms_info" class="sms_info"></div>
+        <a href="javascript:void(0);" class="l-btn-login mt10" id="sms_login"> 手机动态码登录 </a>
+      </form>
+    </div>
+  </div>
+  <script type="text/javascript" src="../../js/scrollDoor.js"></script>
+  <script type="text/javascript">
+  // 获取焦点切换功能类表
+  var SDmodel = new scrollDoor();
+  var listSize = '2';
+  var indSeaNavMenu = new Array();
+  var indSeaNavText = new Array();
+  for (var i=0; i<listSize; i++) {
+      var num = parseInt(i) + parseInt(1);
+      indSeaNavMenu[i] = "indSeaNavMenu_" + num;
+      indSeaNavText[i] = "indSeaNavText_" + num;
+  }
+  SDmodel.sd(indSeaNavMenu,indSeaNavText,"indexNav_1", "indexNav_2");
+  </script> 
+</div>
+<div class="joint-login">
+  <h2><span>合作账号登录</span></h2>
+  <ul>
+    <li><a class="weibo" href="javascript: void(0);"></a></li>
+    <li><a class="qq" href="javascript: void(0);"></a></li>
+    <li><a class="weixin" href="javascript: void(0);"></a></li>
+  </ul>
+</div>
+<div class="footer" id="footer"></div>
+<input type="hidden" name="referurl">
+<script type="text/javascript" src="../../js/config.js"></script>
+<script type="text/javascript" src="../../js/zepto.min.js"></script>
+<script type="text/javascript" src="../../js/template.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/tmpl/common-top.js"></script>
+<script type="text/javascript" src="../../js/simple-plugin.js"></script>
+<script type="text/javascript" src="../../js/tmpl/login.js"></script>
+<script type="text/javascript" src="../../js/tmpl/sms_login.js"></script>
+<script type="text/javascript" src="../../js/tmpl/footer_login.js"></script>
+</body>
+</html>

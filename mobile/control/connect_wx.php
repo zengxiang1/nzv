@@ -21,7 +21,7 @@ class connect_wxControl {
      */
     public function indexOp(){
         if(empty($_GET['code'])) {
-            Tpl::showpage('connect_wx.index','null_layout');
+            @header('Location: http://www.nzc.com/wap/index.html');
         } else {
             $this->get_infoOp();
         }
@@ -40,7 +40,7 @@ class connect_wxControl {
                 $_SESSION['member_email']= $_POST["email"];
             }
             $model_member->editMember(array('member_id'=> $_SESSION['member_id']),$member);
-            showDialog(Language::get('nc_common_save_succ'),urlMember('member', 'home'),'succ');
+            
         }
     }
     /**
@@ -56,7 +56,7 @@ class connect_wxControl {
                 $member = $model_member->getMemberInfo(array('weixin_unionid'=> $unionid));
                 if(!empty($member)) {//会员信息存在时自动登录
                     $model_member->createSession($member);
-                    showDialog('登录成功',urlMember('member', 'home'),'succ');
+                     @header('Location: http://www.nzc.com/wap/tmpl/member/member.html?act=member');
                 }
                 if(!empty($_SESSION['member_id'])) {//已登录时绑定微信
                     $member_id = $_SESSION['member_id'];
@@ -64,21 +64,18 @@ class connect_wxControl {
                     $member['weixin_unionid'] = $unionid;
                     $member['weixin_info'] = $user_info['weixin_info'];
                     $model_member->editMember(array('member_id'=> $member_id),$member);
-                    showDialog('微信绑定成功',urlMember('member', 'home'),'succ');
                 } else {//自动注册会员并登录
                     $this->register($user_info);
                     exit;
                 }
             }
         }
-        Location
     }
     /**
      * 注册
      */
 
     public function register($user_info){
-        Language::read("home_login_register,home_login_index");
         $unionid = $user_info['unionid'];
         $nickname = $user_info['nickname'];
         if(!empty($unionid)) {
@@ -117,11 +114,10 @@ class connect_wxControl {
             $member = $model_member->getMemberInfo(array('member_name'=> $member_name));
             if(!empty($member)) {
                 $model_member->createSession($member,true);//自动登录
-                Tpl::output('user_info',$user_info);
-                Tpl::output('headimgurl',$headimgurl);
-                Tpl::output('password',$password);
-                Tpl::showpage('connect_wx.register');
-            }
+				 @header('Location: http://www.nzc.com/wap/tmpl/member/member.html?act=member');
+            }else{
+				output_error('error');
+			}
         }
     }
     /**
